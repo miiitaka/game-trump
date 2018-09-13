@@ -1,0 +1,51 @@
+div {
+  margin: 0 auto;
+  width: 910px;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  position: relative;
+  width: 70px;
+}
+
+img {
+  width: 100%;
+}
+
+.card_reverse {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+/* 表面の表示 */
+.is-surface .card_surface {
+  opacity: 1;
+  transform: rotateY(0deg);
+  transition: opacity 100ms 150ms, transform 300ms 150ms;
+}
+.is-surface .card_reverse {
+  opacity: 0;
+  transform: rotateY(90deg);
+  transition: opacity 50ms 200ms, transform 300ms;
+}
+
+/* 裏面の表示 */
+.is-reverse .card_surface {
+  opacity: 0;
+  transform:rotateY(90deg);
+  transition: opacity 50ms 200ms, transform 300ms;
+}
+.is-reverse .card_reverse {
+  opacity: 1;
+  transform:rotateY(0deg);
+  transition: opacity 100ms 150ms, transform 300ms 150ms;
+}

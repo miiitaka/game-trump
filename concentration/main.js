@@ -8,7 +8,7 @@ $(function(){
     kind = ["c", "d", "h", "s"],
     cards = [],
     select_index = [],
-    select_num;
+    select_num = "";
 
   for (var i = 0; i < 4; i++){
     for (var j = 1; j <= 13; j++){
@@ -39,10 +39,10 @@ $(function(){
   }
 
   $table.on("click", "li", function(){
-    $(this).toggleClass('is-surface').toggleClass('is-reverse');
+    $(this).toggleClass("is-surface").toggleClass("is-reverse");
 
-    if (select_num === undefined || select_num === ""){
-      select_num = $(this).data("num").replace(/[^0-9]/g, "");
+    if (select_num === ""){
+      select_num = $(this).data("num");
       select_index.push($(this).index());
     } else {
       if ($(this).index() !== select_index[0]){
@@ -60,8 +60,8 @@ $(function(){
   });
 
   function card_reverse(){
-    $table.find("li").eq(select_index[0]).toggleClass('is-surface').toggleClass('is-reverse');
-    $table.find("li").eq(select_index[1]).toggleClass('is-surface').toggleClass('is-reverse');
+    $table.find("li").eq(select_index[0]).toggleClass("is-surface").toggleClass("is-reverse");
+    $table.find("li").eq(select_index[1]).toggleClass("is-surface").toggleClass("is-reverse");
     select_num = "";
     select_index = [];
   }
@@ -75,11 +75,11 @@ $(function(){
 
   function shuffle() {
     var
-      len = cards.length,
+      len = cards.length - 1,
       tmp,
       j;
 
-    for (var i = len - 1; i > 0; i--) {
+    for (var i = len; i > 0; i--) {
       j = Math.floor(Math.random() * (i + 1));
       tmp = cards[i];
       cards[i] = cards[j];

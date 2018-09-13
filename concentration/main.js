@@ -47,7 +47,7 @@ $(function(){
     } else {
       if ($(this).index() !== select_index[0]){
         select_index.push($(this).index());
-        if ($(this).data("num").replace(/[^0-9]/g, "") === select_num){
+        if ($(this).data("num") === select_num){
           setTimeout(card_ok, 1000);
         } else {
           setTimeout(card_reverse, 1000);

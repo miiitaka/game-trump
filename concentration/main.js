@@ -7,8 +7,21 @@ $(function(){
     $img = $("<img>"),
     kind = ["c", "d", "h", "s"],
     cards = [],
+    cards_len,
     select_index = [],
-    select_num = "";
+    select_num = "",
+    $timer = $("#timer"),
+    default_time = 180,
+    time = default_time,
+    minute,
+    second,
+    check_timer,
+    game_start = false,
+    hit_count = 0,
+    $result_wrapper = $("#result_wrapper"),
+    $result = $("#result");
+
+  $timer.text(setTime());
 
   for (var i = 0; i < 4; i++){
     for (var j = 1; j <= 13; j++){
@@ -16,9 +29,11 @@ $(function(){
     }
   }
 
+  cards_len = cards.length;
+
   shuffle();
 
-  for (i = 0; i < cards.length; i++){
+  for (i = 0; i < cards_len; i++){
     $li
       .clone()
       .data("num", cards[i].replace(/[^0-9]/g, ""))
@@ -39,6 +54,10 @@ $(function(){
   }
 
   $table.on("click", "li", function(){
+    if (!game_start){
+      startCountDown();
+      game_start = true;
+    }
     $(this).toggleClass("is-surface").toggleClass("is-reverse");
 
     if (select_num === ""){
@@ -71,11 +90,15 @@ $(function(){
     $table.find("li").eq(select_index[1]).addClass("hit");
     select_num = "";
     select_index = [];
+    hit_count += 2;
+    if (hit_count === cards_len){
+      setResult("Game Clear!!");
+    }
   }
 
   function shuffle() {
     var
-      len = cards.length - 1,
+      len = cards_len - 1,
       tmp,
       j;
 
@@ -86,4 +109,36 @@ $(function(){
       cards[j] = tmp;
     }
   }
+
+  function startCountDown() {
+    check_timer = setInterval(function() {
+      time--;
+      $timer.text(setTime());
+      if (time === 59) {
+        $timer.addClass("limit");
+      } else if (time === 0) {
+        $timer.text("Time UP!");
+        setResult("Game Over!");
+      }
+    }, 1000);
+  }
+
+  function setTime() {
+    minute = ("0" + Math.floor(time / 60)).slice(-2);
+    second = ("0" + time % 60).slice(-2);
+    return minute + "：" + second;
+  }
+
+  function setResult(text) {
+    $table.off("click");
+    $result_wrapper.toggle();
+    $("#result_title").text(text);
+    $("#result_count").text(hit_count);
+    clearInterval(check_timer);
+  }
+
+  $result.css({
+    'top': ($(window).height()-$result.innerHeight())/2,
+    'left': ($(window).width()-$result.innerWidth())/2
+  });
 });

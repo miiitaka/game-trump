@@ -67,8 +67,8 @@ $(function(){
   }
 
   function card_ok(){
-    $table.find("li").eq(select_index[0]).off("click").css("visibility", "hidden");
-    $table.find("li").eq(select_index[1]).off("click").css("visibility", "hidden");
+    $table.find("li").eq(select_index[0]).addClass("hit");
+    $table.find("li").eq(select_index[1]).addClass("hit");
     select_num = "";
     select_index = [];
   }

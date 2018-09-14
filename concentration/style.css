@@ -26,6 +26,10 @@ img {
   top: 0;
 }
 
+.hit {
+  visibility: hidden;
+}
+
 /* 表面の表示 */
 .is-surface .card_surface {
   opacity: 1;

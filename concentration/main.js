@@ -39,6 +39,9 @@ $(function(){
   }
 
   $table.on("click", "li", function(){
+    if (select_index.length >= 2) {
+      return false;
+    }
     $(this).toggleClass("is-surface").toggleClass("is-reverse");
 
     if (select_num === ""){

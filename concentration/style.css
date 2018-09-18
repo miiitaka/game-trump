@@ -1,6 +1,24 @@
-div {
-  margin: 0 auto;
+.wrapper {
+  margin: 50px auto;
   width: 910px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.timeLimit {
+  font-size: 20px;
+}
+
+.timeLimit span {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.timeLimit span.limit {
+  color: #f00;
 }
 
 ul {
@@ -52,4 +70,39 @@ img {
   opacity: 1;
   transform:rotateY(0deg);
   transition: opacity 100ms 150ms, transform 300ms 150ms;
+}
+
+.result-wrapper {
+  background: rgba(0, 0, 0, .8);
+  display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.result-area {
+  background: #004c8c;
+  border-radius: 20px;
+  height: 160px;
+  margin: 0;
+  padding: 20px 50px;
+  position: fixed;
+  text-align: center;
+  width: 300px;
+}
+
+h2 {
+  color: #fff;
+  font-size: 32px;
+}
+
+p {
+  color: #fff;
+}
+
+.result-area span {
+  font-size: 30px;
+  margin: 0 10px;
 }

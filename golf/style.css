@@ -1,0 +1,32 @@
+.wrapper {
+  margin: 50px auto;
+  width: 600px;
+}
+
+.wrapper div {
+	display: flex;
+	justify-content: space-between;
+}
+
+#deck {
+	display: block;
+	width: 70px;
+}
+
+#deck img {
+	width: 100%;
+}
+
+.wrapper ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper ul li {
+	width: 70px;
+}
+
+.wrapper ul li img {
+	width: 100%;
+}

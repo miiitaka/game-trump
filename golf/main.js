@@ -12,6 +12,7 @@ $(function(){
 		stage_cards = [],
 		work_array = [],
 		set_flag = false,
+		on_flag = false,
 		col_length,
 		set_card,
 		compare_card;
@@ -51,19 +52,39 @@ $(function(){
 	});
 
 	function compareCards(set_num){
+		console.log(stage_cards);
 		set_num = parseInt(set_num, 10);
+		$table.find("li").off("click");
+		on_flag = false;
+
 		for (var i = 0; i < 7; i++){
+			if (stage_cards[i].lencth === 0) {
+				continue;
+			}
+
 			col_length = stage_cards[i].length - 1;
 			compare_card = stage_cards[i][col_length].replace(/[^0-9]/g, "");
 			compare_card = parseInt(compare_card, 10);
 
-			if (set_num === compare_card + 1){
-				console.log(i);
-			}
-			if (set_num === compare_card - 1){
-				console.log(i);
+			if (set_num === compare_card + 1 || set_num === compare_card + 12){
+				setClickCard(i, col_length);
+			} else if (set_num === compare_card - 1 || set_num === compare_card - 12){
+				setClickCard(i, col_length);
 			}
 		}
+		if (!on_flag) {
+			set_flag = false;
+		}
+	}
+
+	function setClickCard(col, len){
+		on_flag = true;
+		$table.find("ul").eq(col).find("li").eq(len).on("click", function() {
+			set_card = stage_cards[col].pop();
+			$set.attr("src", "../images/" + set_card);
+			compareCards(set_card.replace(/[^0-9]/g, ""));
+			$(this).remove();
+		});
 	}
 
 	function shuffle() {
